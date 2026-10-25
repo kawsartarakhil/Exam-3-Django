@@ -4,6 +4,7 @@ from helpers import *
 from django.http import HttpResponse
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required,permission_required
+
 def home_view(request):
     return render(request,'home.html')
 
@@ -132,7 +133,3 @@ def confirm_reset_password_view(request, token):
         return redirect("login")
 
     return render(request, "confirm_reset_password.html")
-
-@login_required
-def home_view(request):
-    return render(request, "home.html")
