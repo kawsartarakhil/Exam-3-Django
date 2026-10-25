@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register</title>
+<link rel="stylesheet" href="{% static 'auth.css' %}">
+</head>
+<body>
+<div class="auth-page">
+<div class="auth-card">
+<div class="auth-image">
+    <img src="/media/pics/road_trees_redcar.jpg" alt="">
+<div class="auth-image-text">
+<p class="auth-quote">"Every bend in the road reveals a story worth sharing."</p>
+<p>Join travellers who share rides, split the cost, and make new friends along the way.</p>
+</div>
+</div>
+<div class="auth-form-side">
+<a href="{% url 'home' %}" class="auth-back">&larr; Back to Home</a>
+<p class="auth-label">Create account</p>
+<h1>Start your next journey.</h1>
+<p class="auth-subtitle">Create your account to find travel companions and share rides.</p>
+{% if error %}
+<p class="auth-error">{{ error }}</p>
+{% endif %}
+<form method="POST">
+{% csrf_token %}
+<div class="auth-row">
+<div class="auth-field">
+<label>First name</label>
+<input type="text" name="first_name" placeholder="e.g. Thomas" required>
+</div>
+<div class="auth-field">
+<label>Last name</label>
+<input type="text" name="last_name" placeholder="e.g. Laurent" required>
+</div>
+</div>
+<div class="auth-field">
+<label>Email address</label>
+<input type="email" name="email" placeholder="thomas@example.com" required>
+</div>
+<div class="auth-field">
+<label>Password</label>
+<input type="password" name="password1" placeholder="Create a secure password" required>
+</div>
+<div class="auth-field">
+<label>Confirm password</label>
+<input type="password" name="password2" placeholder="Re-enter your password" required>
+</div>
+<button type="submit" class="auth-button">Register</button>
+</form>
+<p class="auth-bottom">Already have an account?<a href="{% url 'login' %}">Login</a></p>
+</div>
+</div>
+</div>
+</body>
+</html>
