@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'home.css' %}">
+<div class="home-page">
+<section class="home-hero">
+<div class="home-hero-text">
+<p class="home-label">Shared journeys across the continent</p>
+<h1>The best journeys<br><em>are shared.</em></h1>
+<p class="home-hero-description">Find travel companions, share rides on scenic routes, and turn every road trip into a story worth telling.</p>
+<div class="home-buttons">
+{% if user.is_authenticated %}
+    {% if perms.travel.view_trip %}
+        <a href="{% url 'trip_list' %}" class="home-btn-dark">Find a Trip</a>
+    {% else %}
+        <a href="{% url 'login' %}" class="home-btn-dark">Find a Trip</a>
+    {% endif %}
+    {% if perms.travel.add_trip %}
+        <a href="{% url 'trip_create' %}" class="home-btn-light">Offer a Ride</a>
+    {% else %}
+        <a href="{% url 'login' %}" class="home-btn-light">Offer a Ride</a>
+    {% endif %}
+{% else %}
+    <a href="{% url 'login' %}" class="home-btn-dark">Find a Trip</a>
+    <a href="{% url 'login' %}" class="home-btn-light">Offer a Ride</a>
+{% endif %}
+</div>
+</div>
+<div class="home-hero-image home-image-box">
+<img src="/media/pics/50aa7c_6fac2aa11cc54c21b9a6a57d2b0e731d~mv2.avif ">
+</div>
+</section>
+<section class="home-how">
+<div class="home-section-title">
+<p class="home-label">How it works</p>
+<h2>Thoughtful Travel, Made Effortless</h2>
+<p>For people who enjoy good conversation, scenic detours, and real connection instead of anonymous rides.</p>
+</div>
+<div class="home-cards">
+<diWILLv class="home-card">
+<div class="home-card-number">01</div>
+<h3>Find Your Route</h3>
+<p>Look for rides going your way, or publish your own trip with the seats you have free.</p>
+</div>
+<div class="home-card">
+<div class="home-card-number">02</div>
+<h3>Connect With Travellers</h3>
+<p>Check the trip details, send a request, and agree on luggage, music, and stops before you go.</p>
+</div>
+<div class="home-card">
+<div class="home-card-number">03</div>
+<h3>Enjoy the Journey</h3>
+<p>Share the cost, swap stories, and arrive with good company instead of a long, lonely drive.</p>
+</div>
+</div>
+</section>
+<section class="home-why">
+<div class="home-why-box">
+<div class="home-why-text">
+<p class="home-label home-label-light">Why travel together</p>
+<h2>Rediscover the Romance of the Open Road</h2>
+<p>Heading the same way as someone else? Share the car, the cost, and the conversation.</p>
+</div>
+<div class="home-why-points">
+<div class="home-why-point">
+<h3>Share the cost</h3>
+<p>Split fuel and tolls between everyone in the car.</p>
+</div>
+<div class="home-why-point">
+<h3>Meet new people</h3>
+<p>Turn strangers into friendly travel companions.</p>
+</div>
+<div class="home-why-point">
+<h3>Fewer cars</h3>
+<p>One full car is better than several empty ones.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="home-final">
+<div class="home-final-image home-image-box">
+<img src="/media/pics/dance-drive-road-trip-with-happy-friends-car-together-holiday-travel-vacation-energy-freedom-music-with-group-people-riding-convertible-vehicle-weekend-getaway_590464-532554.avif" alt=""></div>
+<div class="home-final-text">
+<h2>Ready for your next journey?</h2>
+<p>Join other travellers, find a companion, or offer a free seat in your car.</p>
+<div class="home-buttons">
+{% if user.is_authenticated %}
+    {% if perms.travel.view_trip %}
+        <a href="{% url 'trip_list' %}" class="home-btn-dark">Find a Trip</a>
+    {% else %}
+        <a href="{% url 'login' %}" class="home-btn-dark">Find a Trip</a>
+    {% endif %}
+    {% if perms.travel.add_trip %}
+        <a href="{% url 'trip_create' %}" class="home-btn-light">Offer a Ride</a>
+    {% else %}
+        <a href="{% url 'login' %}" class="home-btn-light">Offer a Ride</a>
+    {% endif %}
+{% else %}
+    <a href="{% url 'login' %}" class="home-btn-dark">Find a Trip</a>
+    <a href="{% url 'login' %}" class="home-btn-light">Offer a Ride</a>
+{% endif %}
+</div>
+</div>
+</section>
+</div>
+{% endblock %}

@@ -1,0 +1,176 @@
+.home-page {
+    background-color: #f4f6ee;
+    color: #1c2b24;
+}
+.home-hero, .home-how, .home-final {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+.home-hero {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 40px;
+}
+.home-hero-text {
+    flex: 1;
+    min-width: 280px;
+}
+.home-hero-image {
+    flex: 1;
+    min-width: 280px;
+    height: 380px;
+}
+.home-label {
+    display: inline-block;
+    background-color: #dce3d4;
+    color: #1f4034;
+    font-size: 12px;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 20px;
+    margin-bottom: 15px;
+}
+.home-page h1, .home-page h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: normal;
+}
+.home-page h1 {
+    font-size: 52px;
+    line-height: 1.1;
+    margin: 0 0 20px 0;
+}
+.home-page h2 {
+    font-size: 34px;
+    margin: 0 0 15px 0;
+}
+.home-hero-description {
+    font-size: 17px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+.home-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+.home-btn-dark, .home-btn-light {
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+}
+.home-btn-dark {
+    background-color: #1f4034;
+    color: white;
+}
+.home-btn-light {
+    background-color: white;
+    color: #1f4034;
+    border: 1px solid #dce3d4;
+}
+.home-image-box {
+    background-color: #dce3d4;
+    border: 2px dashed #8fa395;
+    border-radius: 12px;
+    overflow: hidden;
+}
+.home-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.home-section-title {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+}
+.home-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+}
+.home-card {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+}
+.home-card-number {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #dce3d4;
+    color: #1f4034;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+.home-card h3 {
+    margin: 0 0 10px 0;
+}
+.home-card p {
+    line-height: 1.5;
+    margin: 0;
+}
+.home-why {
+    padding: 20px;
+}
+.home-why-box {
+    max-width: 1100px;
+    margin: 0 auto;
+    background-color: #1f4034;
+    color: white;
+    padding: 50px 40px;
+    border-radius: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+.home-why-text {
+    flex: 1;
+    min-width: 260px;
+}
+.home-label-light {
+    background-color: #2f5a4a;
+    color: #dce3d4;
+}
+.home-why-text p {
+    line-height: 1.6;
+}
+.home-why-points {
+    flex: 1;
+    min-width: 260px;
+}
+.home-why-point {
+    background-color: #2f5a4a;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+.home-why-point h3 {
+    margin: 0 0 5px 0;
+}
+.home-why-point p {
+    margin: 0;
+}
+.home-final {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 40px;
+}
+.home-final-image {
+    flex: 1;
+    min-width: 280px;
+    height: 300px;
+}
+.home-final-text {
+    flex: 1;
+    min-width: 280px;
+}
+.home-final-text p {
+    line-height: 1.6;
+    margin-bottom: 25px;
+}

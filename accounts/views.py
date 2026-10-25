@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
-from models import *
-from helpers import *
+from .models import *
+from .helpers import *
 from django.http import HttpResponse
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required,permission_required
@@ -11,8 +11,8 @@ def home_view(request):
 def register_view(request):
     if request.method == 'POST':
         email = request.POST.get("email")
-        first_name = request.POST.get("email")
-        last_name = request.POST.get("email")
+        first_name = request.POST.get("first_name")
+        last_name = request.POST.get("last_name")
         password1 = request.POST.get("password1")
         password2 = request.POST.get("password2")
 
@@ -35,13 +35,12 @@ def register_view(request):
 
             
 def confirm_token_view(request, token):
-    token = EmailConfimation.objects.get(token=token)
-    if not token:
-        raise ValueError("Token not found")
-    token.user.is_active = True
-    token.user.save()
-    token.delete()
-
+    confirmation = EmailConfimation.objects.filter(token=token).first()
+    if not confirmation:
+        return HttpResponse("Invalid token")
+    confirmation.user.is_active = True
+    confirmation.user.save()
+    confirmation.delete()
     return redirect("login")
 
 
@@ -91,6 +90,8 @@ def change_password_view(request):
         old_password = request.POST.get("old_password")
         password1 = request.POST.get("password1")
         password2 = request.POST.get("password2")
+        if not password1:
+            return render(request, "change_password.html", {"error": "Password cannot be empty"})
         if not request.user.check_password(old_password):
             return render(request, "change_password.html", {"error": "incorrect old password"})
         if password1 != password2:
@@ -124,6 +125,8 @@ def confirm_reset_password_view(request, token):
     if request.method == "POST":
         password1 = request.POST.get("password1")
         password2 = request.POST.get("password2")
+        if not password1:
+            return render(request, "confirm_reset_password.html", {"error": "Password cannot be empty"})
         if password1 != password2:
             return render(request, "confirm_reset_password.html", {"error": "Passwords do not match"})
         user = confirmation.user
