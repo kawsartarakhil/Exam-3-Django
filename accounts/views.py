@@ -165,10 +165,7 @@ def resend_reset_email_view(request):
         user = CustomUser.objects.filter(email__iexact=email).first()
 
         if not user:
-            return render(request, "reset_password.html", {
-                "error": "User does not exist",
-                "email": email
-            })
+            return render(request, "reset_password.html", {"error": "User does not exist","email": email})
 
         token = EmailConfimation.objects.filter(user=user).first()
 
@@ -177,9 +174,6 @@ def resend_reset_email_view(request):
 
         send_reset_password_email(token)
 
-        return render(request, "reset_password.html", {
-            "success": "Reset email sent. Check your inbox.",
-            "email": email
-        })
+        return render(request, "reset_password.html", {"success": "Reset email sent. Check your inbox.","email": email})
 
     return redirect("reset_password")

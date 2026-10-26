@@ -24,3 +24,8 @@
     border-radius: 8px;
     overflow-wrap: anywhere;
 }
+
+a{
+  text-decoration: none;
+  color: black;  
+}

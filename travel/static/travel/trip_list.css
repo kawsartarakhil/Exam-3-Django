@@ -146,3 +146,47 @@
     text-decoration: underline;
 }
 
+.trip-search {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.trip-search input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+
+.trip-search input {
+    box-sizing: border-box;
+    width: 220px;
+    max-width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #b8c5b9;
+    border-radius: 6px;
+    background-color: white;
+    color: #1c2b24;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    outline: none;
+}
+
+.trip-search input:focus {
+    border-color: #1f4034;
+    box-shadow: 0 0 0 2px rgba(31, 64, 52, 0.15);
+}
+
+.trip-search input::placeholder {
+    color: #777;
+}
+
+.trip-search {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 30px;
+}

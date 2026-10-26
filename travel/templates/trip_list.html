@@ -19,6 +19,15 @@
 {% endif %}
 </section>
 <section class="trip-list">
+
+<form method="GET" class="trip-search">
+    <input type="text" name="start_location" placeholder="From where?" value="{{ request.GET.start_location|default:'' }}">
+    <input type="text" name="end_location" placeholder="To where?" value="{{ request.GET.end_location|default:'' }}">
+    <input type="date" name="date" value="{{ request.GET.date|default:'' }}">
+    <button type="submit" class="trip-btn-dark">Search Trips</button>
+    <a href="{% url 'trip_list' %}" class="trip-btn-dark">Clear</a>
+</form>
+
 <div class="trip-cards">
 {% for trip in trips %}
 <div class="trip-card">

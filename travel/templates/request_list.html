@@ -15,6 +15,15 @@
 {% endif %}
 </section>
 <section class="req-list">
+
+<form method="GET" class="req-search">
+    <input type="text" name="start_location" placeholder="From where?" value="{{ request.GET.start_location|default:'' }}">
+    <input type="text" name="end_location" placeholder="To where?" value="{{ request.GET.end_location|default:'' }}">
+    <input type="date" name="date" value="{{ request.GET.date|default:'' }}">
+    <button type="submit" class="req-btn-dark">Search Requests</button>
+    <a href="{% url 'request_list' %}" class="req-btn-dark">Clear</a>
+</form>
+
 <div class="req-cards">
 {% for companion_request in requests %}
 <div class="req-card">

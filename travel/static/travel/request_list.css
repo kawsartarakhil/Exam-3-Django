@@ -197,3 +197,16 @@
     color: #666;
     font-size: 15px;
 }
+
+.req-search {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.req-search input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}

@@ -134,7 +134,6 @@ def request_update_view(request, pk):
     companion_request = CompanionRequest.objects.get(pk=pk)
     if not can_manage_companion_requeest(request.user,companion_request):
         raise PermissionDenied
-
     if request.method == "POST":
         start = request.POST.get("start_location")
         end = request.POST.get("end_location")
