@@ -34,6 +34,9 @@
 <div class="auth-field">
 <label>Password</label>
 <input type="password" name="password" placeholder="Enter your password" required>
+<p class="auth-bottom">
+Forgot your password? <a href="{% url 'reset_password' %}">Reset it here</a>
+</p>
 </div>
 <button type="submit" class="auth-button">Login</button>
 </form>

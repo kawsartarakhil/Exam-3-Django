@@ -135,3 +135,48 @@ def confirm_reset_password_view(request, token):
         return redirect("login")
 
     return render(request, "confirm_reset_password.html")
+
+
+
+
+def resend_email_view(request):
+    if request.method == "POST":
+        email = request.POST.get("email", "").strip()
+        user = CustomUser.objects.filter(email__iexact=email).first()
+        if not user:
+            return render(request, "resend.html", {"error": "User does not exist"})
+        if user.is_active:
+            return render(request, "resend.html", {"error": "Your email is already confirmed"})
+        token = EmailConfimation.objects.filter(user=user).first()
+        if not token:
+            token = EmailConfimation.objects.create(user=user)
+        send_confirmation_email(token)
+        return render(request, "resend.html", {"success": "Confirmation email sent. Check your inbox."})
+
+    return render(request, "resend.html")
+
+
+def resend_reset_email_view(request):
+    if request.method == "POST":
+        email = request.POST.get("email", "").strip()
+        user = CustomUser.objects.filter(email__iexact=email).first()
+
+        if not user:
+            return render(request, "reset_password.html", {
+                "error": "User does not exist",
+                "email": email
+            })
+
+        token = EmailConfimation.objects.filter(user=user).first()
+
+        if not token:
+            token = EmailConfimation.objects.create(user=user)
+
+        send_reset_password_email(token)
+
+        return render(request, "reset_password.html", {
+            "success": "Reset email sent. Check your inbox.",
+            "email": email
+        })
+
+    return redirect("reset_password")
