@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Create trip{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'trio_form.css' %}">
+<div class="form-page">
+<section class="form-section">
+<div class="form-card">
+<a href="{% url 'trip_list' %}" class="form-back">&larr; Back to trip list</a>
+<p class="form-label">Offer a ride</p>
+<h1>Create a trip</h1>
+<p class="form-subtitle">Tell other travellers where you are going and how many seats you have free.</p>
+{% if error %}
+<p class="form-error">{{ error }}</p>
+{% endif %}
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+<div class="form-row">
+<div class="form-field">
+<label>Start location</label>
+<input type="text" name="start_location" maxlength="100" placeholder="e.g. Geneva" required>
+</div>
+<div class="form-field">
+<label>End location</label>
+<input type="text" name="end_location" maxlength="100" placeholder="e.g. Chamonix" required>
+</div>
+</div>
+<div class="form-row">
+<div class="form-field">
+<label>Date and time</label>
+<input type="datetime-local" name="date" required>
+</div>
+<div class="form-field">
+<label>Available seats</label>
+<input type="number" name="seats_available" min="1" placeholder="e.g. 3" required>
+</div>
+</div>
+<div class="form-field">
+<label>Description</label>
+<textarea name="description" rows="5" placeholder="Tell travellers about the route, luggage space, stops..."></textarea>
+</div>
+<div class="form-field">
+<label>Car picture</label>
+<input type="file" name="car_picture" accept="image/*">
+</div>
+<div class="form-buttons">
+<button type="submit" class="form-btn-dark">Create Trip</button>
+<a href="{% url 'trip_list' %}" class="form-btn-light">Cancel</a>
+</div>
+</form>
+</div>
+</section>
+</div>
+{% endblock %}

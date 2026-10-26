@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Trip details{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'travel/trip_detail.css' %}">
+<div class="detail-page">
+<section class="detail-top">
+<!-- ADD YOUR trip list URL NAME IN THE href BELOW -->
+<a href="#" class="detail-back">&larr; Back to trip list</a>
+<h1>{{ trip.start_location }} &rarr; {{ trip.end_location }}</h1>
+<div class="detail-badges">
+<span class="detail-badge">{{ trip.date|date:"D, M j, Y" }} {{ trip.time|time:"H:i" }}</span>
+<span class="detail-badge detail-badge-seats">{{ trip.seats_available }} seats available</span>
+</div>
+</section>
+<section class="detail-main">
+<div class="detail-left">
+<div class="detail-image detail-image-box">
+{% if trip.car_picture %}
+<img src="{{ trip.car_picture.url }}" alt="Car">
+{% else %}
+<!-- I WILL ADD THE DEFAULT TRIP IMAGE HERE (file inside media/pics/) -->
+{% endif %}
+</div>
+<div class="detail-box">
+<p class="detail-label">Route overview</p>
+<h2>The Journey</h2>
+<div class="detail-route">
+<p class="detail-point">Start: {{ trip.start_location }}</p>
+<p class="detail-point">Destination: {{ trip.end_location }}</p>
+</div>
+</div>
+<div class="detail-box">
+<p class="detail-label">Trip notes</p>
+<h2>About this trip</h2>
+<p class="detail-description">{{ trip.description }}</p>
+</div>
+</div>
+<div class="detail-right">
+<div class="detail-box">
+<p class="detail-label">Trip details</p>
+<div class="detail-row">
+<p>Date</p>
+<p>{{ trip.date|date:"M j, Y" }}</p>
+</div>
+<div class="detail-row">
+<p>Time</p>
+<p>{{ trip.time|time:"H:i" }}</p>
+</div>
+<div class="detail-row">
+<p>Seats available</p>
+<p>{{ trip.seats_available }}</p>
+</div>
+</div>
+<div class="detail-box">
+<p class="detail-label">Driver</p>
+<div class="detail-driver">
+<div class="detail-driver-image detail-image-box">
+<!-- i wii add this lates-->
+</div>
+<p class="detail-driver-name">{{ trip.user.first_name }} {{ trip.user.last_name }}</p>
+</div>
+</div>
+{% if can_manage %}
+<div class="detail-box">
+<p class="detail-label">Manage this trip</p>
+<div class="detail-buttons">
+<a href="{% url 'trip_update' trip.id %}" class="detail-btn-dark">Edit Trip</a>
+<a href="{% url 'trip_delete' trip.id %}" class="detail-btn-danger">Delete Trip</a>
+</div>
+</div>
+{% endif %}
+</div>
+</section>
+</div>
+{% endblock %}

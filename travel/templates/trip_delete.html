@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Delete trip{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'trio_form.css' %}">
+<div class="form-page">
+<section class="form-section">
+<div class="form-card">
+<p class="form-label form-label-danger">Delete trip</p>
+<h1>Are you sure?</h1>
+<p class="form-subtitle">You are about to delete this trip. This cannot be undone.</p>
+<div class="form-summary">
+<p class="form-summary-route">{{ trip.start_location }} &rarr; {{ trip.end_location }}</p>
+<p>Date: {{ trip.date|date:"M j, Y H:i" }}</p>
+<p>Seats available: {{ trip.seats_available }}</p>
+</div>
+<form method="POST">
+{% csrf_token %}
+<div class="form-buttons">
+<button type="submit" class="form-btn-danger">Confirm Delete</button>
+<a href="{% url 'trip_list' %}" class="form-btn-light">Cancel</a>
+</div>
+</form>
+</div>
+</section>
+</div>
+{% endblock %}

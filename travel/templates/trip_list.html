@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}trip list{% endblock  %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'travel/trip_list.css' %}">
+<div class="trip-page">
+<section class="trip-top">
+<div class="trip-top-text">
+<p class="trip-label">Available rides</p>
+<h1>Find your next ride.</h1>
+<p>Find travellers heading your way and join them for the journey.</p>
+</div>
+{% if user.is_authenticated and perms.travel.add_trip %}
+<a href="{% url 'trip_create' %}" class="trip-btn-dark">Offer a Ride</a>
+{% endif %}
+</section>
+<section class="trip-list">
+<div class="trip-cards">
+{% for trip in trips %}
+<div class="trip-card">
+<div class="trip-card-image trip-image-box">
+{% if trip.car_picture %}
+<img src="{{ trip.car_picture.url }}" alt="Car">
+{% else %}
+<img src="/media/pics/e7eb555410e9f4ce1662121349c4084a.jpg" alt="">
+{% endif %}
+</div>
+<div class="trip-card-body">
+<div class="trip-route">
+<p class="trip-from">{{ trip.start_location }}</p>
+<p class="trip-to">{{ trip.end_location }}</p>
+</div>
+<div class="trip-info">
+<p>Date: {{ trip.date|date:"M j, Y" }} {{ trip.time|time:"H:i" }}</p>
+<p>Seats available: {{ trip.seats_available }}</p>
+</div>
+<p class="trip-description">{{ trip.description }}</p>
+<div class="trip-bottom">
+<p class="trip-driver">Driver: {{ trip.user.first_name }} {{ trip.user.last_name }}</p>
+<a href="{% url 'trip_detail' trip.id  %}" class="trip-btn-dark">View Trip</a>
+</div>
+</div>
+</div>
+{% empty %}
+<div class="trip-empty">
+<h3>No trips found</h3>
+<p>There are no trips available right now. Check back later or offer a ride yourself.</p>
+</div>
+{% endfor %}
+</div>
+</section>
+</div>
+{% endblock %}

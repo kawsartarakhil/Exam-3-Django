@@ -1,0 +1,107 @@
+.trip-page {
+    background-color: #f4f6ee;
+    color: #1c2b24;
+}
+.trip-top, .trip-list {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+.trip-top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+.trip-label {
+    display: inline-block;
+    background-color: #dce3d4;
+    color: #1f4034;
+    font-size: 12px;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 20px;
+    margin: 0 0 12px 0;
+}
+.trip-page h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: normal;
+    font-size: 44px;
+    margin: 0 0 10px 0;
+}
+.trip-btn-dark {
+    background-color: #1f4034;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+}
+.trip-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+.trip-card {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+.trip-image-box {
+    height: 180px;
+    background-color: #dce3d4;
+    border-bottom: 2px dashed #8fa395;
+}
+.trip-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.trip-card-body {
+    padding: 20px;
+}
+.trip-route {
+    border-left: 3px solid #1f4034;
+    padding-left: 12px;
+    margin-bottom: 15px;
+}
+.trip-from, .trip-to {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 20px;
+    margin: 0 0 6px 0;
+}
+.trip-info {
+    background-color: #f4f6ee;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+.trip-info p {
+    margin: 4px 0;
+}
+.trip-description {
+    font-size: 14px;
+    line-height: 1.5;
+}
+.trip-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 15px;
+}
+.trip-driver {
+    font-size: 13px;
+    margin: 0;
+}
+.trip-empty {
+    grid-column: 1 / -1;
+    background-color: white;
+    text-align: center;
+    padding: 50px 20px;
+    border-radius: 10px;
+}

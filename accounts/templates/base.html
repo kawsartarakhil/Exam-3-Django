@@ -6,6 +6,9 @@
     <title>{% block title %}Base.html{% endblock %}</title>
 </head>
 <body>
-    {% block content %}{% endblock  %}
+    <head><a href="{% url 'trip_list'%}">list trip </a> <a href="{% url 'logout'%}">logout</a></head>
+    <main>
+        {% block content %}{% endblock  %}
+    </main>
 </body>
 </html>

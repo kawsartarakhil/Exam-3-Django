@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Edit trip{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'trio_form.css' %}">
+<div class="form-page">
+<section class="form-section">
+<div class="form-card">
+<a href="{% url 'trip_detail' trip.pk %}" class="form-back">&larr; Back to trip</a>
+<p class="form-label">Edit trip</p>
+<h1>Update your trip</h1>
+<p class="form-subtitle">Change any detail below and save.</p>
+{% if error %}
+<p class="form-error">{{ error }}</p>
+{% endif %}
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+<div class="form-row">
+<div class="form-field">
+<label>Start location</label>
+<input type="text" name="start_location" maxlength="100" value="{{ trip.start_location }}" required>
+</div>
+<div class="form-field">
+<label>End location</label>
+<input type="text" name="end_location" maxlength="100" value="{{ trip.end_location }}" required>
+</div>
+</div>
+<div class="form-row">
+<div class="form-field">
+<label>Date and time</label>
+<input type="datetime-local" name="date" value="{{ trip.date|date:'Y-m-d\TH:i' }}" required>
+</div>
+<div class="form-field">
+<label>Available seats</label>
+<input type="number" name="seats_available" min="1" value="{{ trip.seats_available }}" required>
+</div>
+</div>
+<div class="form-field">
+<label>Description</label>
+<textarea name="description" rows="5">{{ trip.description|default_if_none:"" }}</textarea>
+</div>
+<div class="form-field">
+<label>Car picture</label>
+{% if trip.car_picture %}
+<div class="form-current-image">
+<img src="{{ trip.car_picture.url }}" alt="Car">
+<p>Current picture. Choose a new file only if you want to replace it.</p>
+</div>
+{% endif %}
+<input type="file" name="car_picture" accept="image/*">
+</div>
+<div class="form-buttons">
+<button type="submit" class="form-btn-dark">Save Changes</button>
+<a href="{% url 'trip_detail' trip.pk %}" class="form-btn-light">Cancel</a>
+</div>
+</form>
+</div>
+</section>
+</div>
+{% endblock %}

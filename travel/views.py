@@ -23,6 +23,12 @@ def trip_list_view(request):
             trips = trips.filter(date__date=search_date)
     return render(request, "trip_list.html", {"trips": trips})
 
+def trip_detail_view(request, pk):
+    trip = Trip.objects.get(pk=pk)
+    can_manage = request.user.is_authenticated and can_manage_trip(request.user, trip)
+
+    return render(request, "trip_detail.html", {"trip": trip,"can_manage": can_manage})
+
 @login_required
 @permission_required("travel.add_trip", raise_exception=True)
 def trip_create_view(request):
@@ -34,16 +40,16 @@ def trip_create_view(request):
         description = request.POST.get("description")
         car_picture = request.FILES.get("car_picture")
         if not start or not end:
-            return render(request, "trip_form.html", {"error": "Start and end destination are required"})
+            return render(request, "trip_create.html", {"error": "Start and end destination are required"})
         if not date:
-            return render(request, "trip_form.html", {"error": "Enter a valid date and time"})
+            return render(request, "trip_create.html", {"error": "Enter a valid date and time"})
         if seats < 1:
-            return render(request, "trip_form.html", {"error": "Available seats must be at least 1"})
+            return render(request, "trip_create.html", {"error": "Available seats must be at least 1"})
 
         Trip.objects.create(user=request.user,start_location=start,end_location=end,date=date, seats_available=seats, description=description,car_picture=car_picture)
         return redirect("trip_list")
 
-    return render(request, "trip_form.html")
+    return render(request, "trip_create.html")
 
         
 @login_required
@@ -63,7 +69,7 @@ def trip_update_view(request, pk):
         seats = int(seats_text)
 
         if not start or not end or not date_value or seats < 1:
-            return render(request, "trip_form.html", {"trip": trip,"error": "Enter valid locations, date/time, and at least one seat."})
+            return render(request, "trip_update.html", {"trip": trip,"error": "Enter valid locations, date/time, and at least one seat."})
         trip.start_location = start
         trip.end_location = end
         trip.date = date_value
@@ -74,7 +80,7 @@ def trip_update_view(request, pk):
         trip.save()
         return redirect("trip_detail", pk=trip.pk)
 
-    return render(request, "trip_form.html", {"trip": trip})
+    return render(request, "trip_update.html", {"trip": trip})
 
 @login_required
 def trip_confirm_delete(request, pk):
@@ -85,7 +91,7 @@ def trip_confirm_delete(request, pk):
     if request.method == "POST":
         trip.delete()
         return redirect("trip_list")
-    return render(request, "trip_confimr_delete.html", {"trip": trip})
+    return render(request, "trip_delete.html", {"trip": trip})
 
 
 def request_list_view(request):

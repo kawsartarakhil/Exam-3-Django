@@ -1,0 +1,140 @@
+.detail-page {
+    background-color: #f4f6ee;
+    color: #1c2b24;
+    padding-bottom: 40px;
+}
+.detail-top, .detail-main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 30px 20px 10px 20px;
+}
+.detail-back {
+    font-size: 14px;
+    color: #1f4034;
+    text-decoration: none;
+}
+.detail-page h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: normal;
+    font-size: 44px;
+    margin: 15px 0;
+}
+.detail-page h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: normal;
+    font-size: 24px;
+    margin: 0 0 15px 0;
+}
+.detail-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.detail-badge {
+    background-color: #dce3d4;
+    color: #1f4034;
+    font-size: 13px;
+    padding: 6px 14px;
+    border-radius: 20px;
+}
+.detail-badge-seats {
+    background-color: #fde3da;
+    color: #8a3b1f;
+}
+.detail-main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: flex-start;
+}
+.detail-left {
+    flex: 2;
+    min-width: 300px;
+}
+.detail-right {
+    flex: 1;
+    min-width: 280px;
+}
+.detail-image-box {
+    background-color: #dce3d4;
+    border: 2px dashed #8fa395;
+    border-radius: 12px;
+    overflow: hidden;
+}
+.detail-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.detail-image {
+    height: 340px;
+    margin-bottom: 20px;
+}
+.detail-box {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.detail-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #5c6f64;
+    margin: 0 0 10px 0;
+}
+.detail-route {
+    border-left: 3px solid #1f4034;
+    padding-left: 15px;
+}
+.detail-point {
+    margin: 8px 0;
+}
+.detail-description {
+    line-height: 1.6;
+    margin: 0;
+}
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    background-color: #f4f6ee;
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+.detail-row p {
+    margin: 0;
+}
+.detail-driver {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.detail-driver-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+.detail-driver-name {
+    font-weight: bold;
+    margin: 0;
+}
+.detail-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.detail-btn-dark, .detail-btn-danger {
+    color: white;
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+}
+.detail-btn-dark {
+    background-color: #1f4034;
+}
+.detail-btn-danger {
+    background-color: #a12a2a;
+}
