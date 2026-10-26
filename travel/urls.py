@@ -11,4 +11,5 @@ urlpatterns = [
     path("requests/create/", request_create_view, name="request_create"),
     path("requests/<int:pk>/edit/", request_update_view, name="request_update"),
     path("requests/<int:pk>/delete/", request_confirm_delete_view, name="request_delete"),
+    path("profile/<int:user_id>/", public_profile_view, name="public_profile"),
 ]

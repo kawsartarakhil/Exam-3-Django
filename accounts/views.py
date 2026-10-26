@@ -4,6 +4,7 @@ from .helpers import *
 from django.http import HttpResponse
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required,permission_required
+from django.contrib.auth.models import Group
 
 def home_view(request):
     return render(request,'home.html')
@@ -26,6 +27,8 @@ def register_view(request):
             return render(request,"register.html",{"error":"User with this email already exists"})
 
         user=CustomUser.objects.create_user(email=email,password=password2,first_name=first_name,last_name=last_name)
+        passenger_group = Group.objects.get(name="Passengers")
+        user.groups.add(passenger_group)
         token = EmailConfimation.objects.create(user=user)
 
         send_confirmation_email(token)

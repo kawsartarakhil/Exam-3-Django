@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}User Profile{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'travel/request_list.css' %}">
+<div class="public-profile">
+
+    {% if profile_user.profile_picture %}
+        <img src="{{ profile_user.profile_picture.url }}"
+             alt="Profile picture"
+             class="public-profile-picture">
+    {% endif %}
+
+    <h1>{{ profile_user.first_name }} {{ profile_user.last_name }}</h1>
+
+    <p>Email: {{ profile_user.email }}</p>
+
+</div>
+{% endblock %}

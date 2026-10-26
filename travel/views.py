@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required,permission_required
 from django.http import HttpResponse
 from .permissions import can_manage_trip,can_manage_companion_requeest
 from django.core.exceptions import PermissionDenied
+from django.contrib.auth import get_user_model
 
 
 def trip_list_view(request):
@@ -113,14 +114,13 @@ def request_list_view(request):
 
 @login_required
 def request_create_view(request):
-    if not request.user.has_perm("travel.add_companionrequest"):
-        raise PermissionDenied
     if request.method == "POST":
         start = request.POST.get("start_location")
         end = request.POST.get("end_location")
         date_text = request.POST.get("date")
         description = request.POST.get("description")
-        if not start or not end:
+        date  = parse_datetime(date_text)
+        if not start or not end or not date:
             return render(request, "request_create.html", {"error": "Start and end destination are required"})
         date = parse_datetime(date_text)
 
@@ -132,7 +132,7 @@ def request_create_view(request):
 @login_required
 def request_update_view(request, pk):
     companion_request = CompanionRequest.objects.get(pk=pk)
-    if not request.user.has_perm("travel.change_companionrequest"):
+    if not can_manage_companion_requeest(request.user,companion_request):
         raise PermissionDenied
 
     if request.method == "POST":
@@ -154,10 +154,15 @@ def request_update_view(request, pk):
 @login_required
 def request_confirm_delete_view(request, pk):
     companion_request = CompanionRequest.objects.get(pk=pk)
-    if not request.user.has_perm("travel.delete_companionrequest"):
+    if not can_manage_companion_requeest(request.user,companion_request):
         raise PermissionDenied
     
     if request.method == "POST":
         companion_request.delete()
         return redirect("request_list")
     return render(request, "request_delete.html", {"request": companion_request})
+
+def public_profile_view(request, user_id):
+    User = get_user_model()
+    profile_user = User.objects.get(pk=user_id)
+    return render(request, "public_profile.html", {"profile_user": profile_user})

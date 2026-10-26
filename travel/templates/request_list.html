@@ -20,10 +20,23 @@
 <div class="req-card">
 <div class="req-card-body">
 <div class="req-person">
-<div class="req-person-image req-image-box">
-<!-- later-->
-</div>
-<p class="req-person-name">{{ companion_request.user.first_name }} {{ companion_request.user.last_name }}</p>
+    <a href="{% url 'public_profile' companion_request.user.pk %}"
+       class="req-person-image req-image-box">
+
+        {% if companion_request.user.profile_picture %}
+            <img src="{{ companion_request.user.profile_picture.url }}"
+                 alt="Profile picture"
+                 class="req-profile-picture">
+        {% else %}
+            {{ companion_request.user.first_name|first|upper }}
+        {% endif %}
+    </a>
+
+    <a href="{% url 'public_profile' companion_request.user.pk %}"
+       class="req-person-name">
+        {{ companion_request.user.first_name }}
+        {{ companion_request.user.last_name }}
+    </a>
 </div>
 <div class="req-route">
 <p class="req-from">{{ companion_request.start_location }}</p>

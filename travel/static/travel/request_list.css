@@ -126,3 +126,74 @@
     padding: 50px 20px;
     border-radius: 10px;
 }
+
+
+/* User profile in request card */
+.req-person {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.req-image-box {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 50%;
+    background: #dce9df;
+    color: #28543b;
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.req-profile-picture {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.req-person-name {
+    color: inherit;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.req-person-name:hover {
+    text-decoration: underline;
+}
+
+/* Public profile page */
+.public-profile {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    text-align: center;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.public-profile-picture {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 16px;
+    border: 3px solid #dce9df;
+}
+
+.public-profile h1 {
+    margin-bottom: 12px;
+    font-size: 26px;
+}
+
+.public-profile p {
+    color: #666;
+    font-size: 15px;
+}

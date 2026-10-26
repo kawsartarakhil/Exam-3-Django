@@ -8,13 +8,20 @@
 <div class="profile-card">
 <p class="profile-label">My profile</p>
 <div class="profile-top">
-<div class="profile-image profile-image-box">
-{% if user.profile_picture %}
-<img src="{{ user.profile_picture.url }}" alt="Profile picture">
-{% else %}
-<!-- later-->
-{% endif %}
-</div>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="profile_picture" accept="image/*" required>
+    <button type="submit" class="profile-btn-dark">Upload Profile Picture</button>
+    <br><br>
+    <div class="profile-image profile-image-box">
+        {% if user.profile_picture %}
+            <img src="{{ user.profile_picture.url }}" alt="Profile picture">
+        {% endif %}
+    </div>
+   {% if error %}
+        <p class="profile-error">{{ error }}</p>
+    {% endif %}
+</form>
 <div class="profile-top-text">
 <h1>{{ user.first_name }} {{ user.last_name }}</h1>
 <p class="profile-email">{{ user.email }}</p>

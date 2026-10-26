@@ -40,8 +40,11 @@
 </div>
 <p class="trip-description">{{ trip.description }}</p>
 <div class="trip-bottom">
-<p class="trip-driver">Driver: {{ trip.user.first_name }} {{ trip.user.last_name }}</p>
-<a href="{% url 'trip_detail' trip.id  %}" class="trip-btn-dark">View Trip</a>
+<p class="trip-driver">Driver:
+    <a href="{% url 'public_profile' trip.user.pk %}">
+        {{ trip.user.first_name }} {{ trip.user.last_name }}
+    </a>
+</p><a href="{% url 'trip_detail' trip.id  %}" class="trip-btn-dark">View Trip</a>
 </div>
 </div>
 </div>
