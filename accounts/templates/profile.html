@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}My profile{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'profile.css' %}">
+<div class="profile-page">
+<section class="profile-section">
+<div class="profile-card">
+<p class="profile-label">My profile</p>
+<div class="profile-top">
+<div class="profile-image profile-image-box">
+{% if user.profile_picture %}
+<img src="{{ user.profile_picture.url }}" alt="Profile picture">
+{% else %}
+<!-- later-->
+{% endif %}
+</div>
+<div class="profile-top-text">
+<h1>{{ user.first_name }} {{ user.last_name }}</h1>
+<p class="profile-email">{{ user.email }}</p>
+</div>
+</div>
+<div class="profile-info">
+<div class="profile-row">
+<p>First name</p>
+<p>{{ user.first_name }}</p>
+</div>
+<div class="profile-row">
+<p>Last name</p>
+<p>{{ user.last_name }}</p>
+</div>
+<div class="profile-row">
+<p>Email</p>
+<p>{{ user.email }}</p>
+</div>
+</div>
+<div class="profile-buttons">
+<a href="{% url 'change_password' %}" class="profile-btn-dark">Change Password</a>
+<form method="POST" action="{% url 'logout' %}">
+{% csrf_token %}
+<button type="submit" class="profile-btn-danger">Logout</button>
+</form>
+</div>
+</div>
+</section>
+</div>
+{% endblock %}
