@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Inbox{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'travel/messages.css' %}">
+<div class="message-page">
+
+    <h1>Inbox</h1>
+
+    <p><a href="{% url 'sent_messages' %}">View Sent Messages</a></p>
+
+    {% for message in messages %}
+        <div class="message-card">
+            <h3>
+                From:
+                <a href="{% url 'public_profile' message.sender.pk %}">
+                    {{ message.sender.first_name }} {{ message.sender.last_name }}
+                </a>
+            </h3>
+
+            <p>{{ message.content }}</p>
+
+            <small>{{ message.created_at|date:"M j, Y, H:i" }}</small>
+
+            <p>
+                <a href="{% url 'send_message' message.sender.pk %}">
+                    Reply
+                </a>
+            </p>
+        </div>
+    {% empty %}
+        <p>Your inbox is empty.</p>
+    {% endfor %}
+
+</div>
+{% endblock %}

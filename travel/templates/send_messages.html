@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Sent Messages{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'travel/messages.css' %}">
+<div class="message-page">
+    <h1>Sent Messages</h1>
+    <p><a href="{% url 'inbox' %}">Back to Inbox</a></p>
+    {% for message in messages %}
+        <div class="message-card">
+            <h3>
+                To:
+                <a href="{% url 'public_profile' message.recipient.pk %}">
+                    {{ message.recipient.first_name }} {{ message.recipient.last_name }}
+                </a>
+            </h3>
+
+            <p>{{ message.content }}</p>
+
+            <small>{{ message.created_at|date:"M j, Y, H:i" }}</small>
+        </div>
+    {% empty %}
+        <p>You haven't sent any messages yet.</p>
+    {% endfor %}
+
+</div>
+{% endblock %}

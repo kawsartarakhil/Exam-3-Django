@@ -156,7 +156,6 @@ def request_confirm_delete_view(request, pk):
     companion_request = CompanionRequest.objects.get(pk=pk)
     if not can_manage_companion_requeest(request.user,companion_request):
         raise PermissionDenied
-    
     if request.method == "POST":
         companion_request.delete()
         return redirect("request_list")
@@ -166,3 +165,32 @@ def public_profile_view(request, user_id):
     User = get_user_model()
     profile_user = User.objects.get(pk=user_id)
     return render(request, "public_profile.html", {"profile_user": profile_user})
+
+
+
+@login_required
+def send_message_view(request, user_id):
+    User = get_user_model()
+    recipient = User.objects.get(pk=user_id)
+    if recipient == request.user:
+        return redirect("public_profile", user_id=user_id)
+    if request.method == "POST":
+        content = request.POST.get("content", "").strip()
+        if not content:
+            return render(request, "send_message.html", {"recipient": recipient,"error": "Message cannot be empty."})
+        Message.objects.create(sender=request.user,recipient=recipient,content=content)
+        return redirect("inbox")
+
+    return render(request, "send_message.html", {"recipient": recipient})
+
+
+@login_required
+def inbox_view(request):
+    messages = Message.objects.filter(recipient=request.user).order_by("-created_at")
+    return render(request, "inbox.html", {"messages": messages})
+
+
+@login_required
+def sent_messages_view(request):
+    messages = Message.objects.filter(sender=request.user).order_by("-created_at")
+    return render(request, "send_messages.html", {"messages": messages})

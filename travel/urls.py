@@ -12,4 +12,7 @@ urlpatterns = [
     path("requests/<int:pk>/edit/", request_update_view, name="request_update"),
     path("requests/<int:pk>/delete/", request_confirm_delete_view, name="request_delete"),
     path("profile/<int:user_id>/", public_profile_view, name="public_profile"),
+    path("messages/send/<int:user_id>/", send_message_view, name="send_message"),
+    path("messages/inbox/", inbox_view, name="inbox"),
+    path("messages/sent/", sent_messages_view, name="sent_messages"),
 ]

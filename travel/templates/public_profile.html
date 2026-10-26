@@ -1,3 +1,4 @@
+
 {% extends 'base.html' %}
 {% load static %}
 
@@ -5,6 +6,7 @@
 
 {% block content %}
 <link rel="stylesheet" href="{% static 'travel/request_list.css' %}">
+
 <div class="public-profile">
 
     {% if profile_user.profile_picture %}
@@ -16,6 +18,17 @@
     <h1>{{ profile_user.first_name }} {{ profile_user.last_name }}</h1>
 
     <p>Email: {{ profile_user.email }}</p>
+
+    {% if user.is_authenticated and user.pk != profile_user.pk %}
+        <a href="{% url 'send_message' profile_user.pk %}">
+            Send Message
+        </a>
+    {% endif %}
+
+    {% if user.is_authenticated %}
+        <p><a href="{% url 'inbox' %}">Inbox</a></p>
+        <p><a href="{% url 'sent_messages' %}">Sent Messages</a></p>
+    {% endif %}
 
 </div>
 {% endblock %}

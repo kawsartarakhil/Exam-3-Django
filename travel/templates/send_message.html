@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Send Message{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'travel/messages.css' %}">
+<div class="message-page">
+    <h1>Send Message</h1>
+    <p>To: {{ recipient.first_name }} {{ recipient.last_name }}</p>
+
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label for="content">Your message</label>
+        <textarea id="content" name="content" rows="5" required></textarea>
+
+        <button type="submit">Send Message</button>
+    </form>
+
+    <p><a href="{% url 'public_profile' recipient.pk %}">Back to profile</a></p>
+
+</div>
+{% endblock %}

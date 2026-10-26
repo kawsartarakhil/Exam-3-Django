@@ -1,0 +1,26 @@
+.message-page {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.message-page textarea {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 12px;
+    box-sizing: border-box;
+}
+
+.message-page button {
+    padding: 10px 18px;
+    cursor: pointer;
+}
+
+.message-card {
+    padding: 16px;
+    margin: 15px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow-wrap: anywhere;
+}
