@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Delete request{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'travel/trio_form.css' %}">
+<div class="form-page">
+<section class="form-section">
+<div class="form-card">
+<p class="form-label form-label-danger">Delete request</p>
+<h1>Are you sure?</h1>
+<p class="form-subtitle">You are about to delete this companion request. This cannot be undone.</p>
+<div class="form-summary">
+<p class="form-summary-route">{{ request.start_location }} &rarr; {{ request.end_location }}</p>
+<p>Date: {{ request.date|date:"M j, Y H:i" }}</p>
+<p>{{ request.description|default_if_none:"" }}</p>
+</div>
+<form method="POST">
+{% csrf_token %}
+<div class="form-buttons">
+<button type="submit" class="form-btn-danger">Confirm Delete</button>
+<a href="{% url 'request_list' %}" class="form-btn-light">Cancel</a>
+</div>
+</form>
+</div>
+</section>
+</div>
+{% endblock %}

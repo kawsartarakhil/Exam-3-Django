@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Create request{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'travel/request_form.css' %}">
+<div class="req-page">
+<section class="req-section">
+<div class="req-card">
+<a href="{% url 'request_list' %}" class="req-back">&larr; Back to companion requests</a>
+<p class="req-label">Companion request</p>
+<h1>Find a travel companion</h1>
+<p class="req-subtitle">Tell other travellers where you want to go and when.</p>
+{% if error %}
+<p class="req-error">{{ error }}</p>
+{% endif %}
+<form method="POST">
+{% csrf_token %}
+<div class="req-row">
+<div class="req-field">
+<label>Start location</label>
+<input type="text" name="start_location" maxlength="100" placeholder="e.g. Geneva" required>
+</div>
+<div class="req-field">
+<label>End location</label>
+<input type="text" name="end_location" maxlength="100" placeholder="e.g. Chamonix" required>
+</div>
+</div>
+<div class="req-field">
+<label>Date and time</label>
+<input type="datetime-local" name="date" required>
+</div>
+<div class="req-field">
+<label>Description</label>
+<textarea name="description" rows="5" placeholder="Tell travellers what kind of trip you are looking for..."></textarea>
+</div>
+<div class="req-buttons">
+<button type="submit" class="req-btn-dark">Create Request</button>
+<a href="{% url 'request_list' %}" class="req-btn-light">Cancel</a>
+</div>
+</form>
+</div>
+</section>
+</div>
+{% endblock %}

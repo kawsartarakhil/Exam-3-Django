@@ -120,52 +120,44 @@ def request_create_view(request):
         end = request.POST.get("end_location")
         date_text = request.POST.get("date")
         description = request.POST.get("description")
-        seats = request.POST.get("seats_available")
-        car_picture = request.FILES.get("car_picture")
         if not start or not end:
-            return render(request, "request_form.html", {"error": "Start and end destination are required"})
+            return render(request, "request_create.html", {"error": "Start and end destination are required"})
         date = parse_datetime(date_text)
 
-        CompanionRequest.objects.create(user=request.user,start_location=start,end_location=end,date=date,seats_available=seats,description=description,car_picture=car_picture)
+        CompanionRequest.objects.create(user=request.user,start_location=start,end_location=end,date=date,description=description)
         return redirect("request_list")
     
-    return render(request, "request_form.html")
+    return render(request, "request_create.html")
 
 @login_required
 def request_update_view(request, pk):
     companion_request = CompanionRequest.objects.get(pk=pk)
     if not request.user.has_perm("travel.change_companionrequest"):
         raise PermissionDenied
-    
+
     if request.method == "POST":
         start = request.POST.get("start_location")
         end = request.POST.get("end_location")
         date_text = request.POST.get("date")
-        seats_text = request.POST.get("seats_available")
         description = request.POST.get("description")
         date_value = parse_datetime(date_text)
-        seats = int(seats_text)
-
-        if not start or not end or not date_value or seats < 1:
-            return render(request, "request_form.html", {"request": companion_request,"error": "Enter valid locations, datetime, and at least one seat."})
-
+        if not start or not end or not date_value:
+            return render(request, "request_update.html", {"request": companion_request,"error": "Enter valid locations and date/time."})
         companion_request.start_location = start
         companion_request.end_location = end
         companion_request.date = date_value
-        companion_request.seats_available = seats
         companion_request.description = description
         companion_request.save()
         return redirect("request_list")
-    return render(request, "request_form.html", {"request": companion_request})
-
+    return render(request, "request_update.html", {"request": companion_request})
 
 @login_required
 def request_confirm_delete_view(request, pk):
     companion_request = CompanionRequest.objects.get(pk=pk)
     if not request.user.has_perm("travel.delete_companionrequest"):
         raise PermissionDenied
-
+    
     if request.method == "POST":
         companion_request.delete()
         return redirect("request_list")
-    return render(request, "request_confirm_delete.html", {"request": companion_request})
+    return render(request, "request_delete.html", {"request": companion_request})

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Companion requests{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'travel/request_list.css' %}">
+<div class="req-page">
+<section class="req-top">
+<div class="req-top-text">
+<p class="req-label">Companion requests</p>
+<h1>Find a travel companion.</h1>
+<p>Travellers looking to join or share a journey. Reach out and travel together.</p>
+</div>
+{% if user.is_authenticated and perms.travel.add_companionrequest %}
+<a href="{% url 'request_create' %}" class="req-btn-dark">Post a Request</a>
+{% endif %}
+</section>
+<section class="req-list">
+<div class="req-cards">
+{% for companion_request in requests %}
+<div class="req-card">
+<div class="req-card-body">
+<div class="req-person">
+<div class="req-person-image req-image-box">
+<!-- later-->
+</div>
+<p class="req-person-name">{{ companion_request.user.first_name }} {{ companion_request.user.last_name }}</p>
+</div>
+<div class="req-route">
+<p class="req-from">{{ companion_request.start_location }}</p>
+<p class="req-to">{{ companion_request.end_location }}</p>
+</div>
+<div class="req-info">
+<p>Date: {{ companion_request.date|date:"M j, Y H:i" }}</p>
+</div>
+<p class="req-description">{{ companion_request.description|default_if_none:"" }}</p>
+{% if perms.travel.change_companionrequest or perms.travel.delete_companionrequest %}
+<div class="req-buttons">
+{% if perms.travel.change_companionrequest %}
+<a href="{% url 'request_update' companion_request.pk %}" class="req-btn-light">Edit</a>
+{% endif %}
+{% if perms.travel.delete_companionrequest %}
+<a href="{% url 'request_delete' companion_request.pk %}" class="req-btn-danger">Delete</a>
+{% endif %}
+</div>
+{% endif %}
+</div>
+</div>
+{% empty %}
+<div class="req-empty">
+<h3>No companion requests found</h3>
+<p>There are no requests right now. Check back later or post your own.</p>
+</div>
+{% endfor %}
+</div>
+</section>
+</div>
+{% endblock %}

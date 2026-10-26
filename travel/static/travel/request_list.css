@@ -1,0 +1,128 @@
+.req-page {
+    background-color: #f4f6ee;
+    color: #1c2b24;
+}
+.req-top, .req-list {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+.req-top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+.req-label {
+    display: inline-block;
+    background-color: #dce3d4;
+    color: #1f4034;
+    font-size: 12px;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 20px;
+    margin: 0 0 12px 0;
+}
+.req-page h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: normal;
+    font-size: 44px;
+    margin: 0 0 10px 0;
+}
+.req-btn-dark, .req-btn-light, .req-btn-danger {
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+}
+.req-btn-dark {
+    background-color: #1f4034;
+    color: white;
+}
+.req-btn-light {
+    background-color: white;
+    color: #1f4034;
+    border: 1px solid #dce3d4;
+}
+.req-btn-danger {
+    background-color: #a12a2a;
+    color: white;
+}
+.req-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+.req-card {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+.req-card-body {
+    padding: 20px;
+}
+.req-person {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+.req-image-box {
+    background-color: #dce3d4;
+    border: 2px dashed #8fa395;
+    overflow: hidden;
+}
+.req-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.req-person-image {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+.req-person-name {
+    font-weight: bold;
+    font-size: 14px;
+    margin: 0;
+}
+.req-route {
+    border-left: 3px solid #1f4034;
+    padding-left: 12px;
+    margin-bottom: 15px;
+}
+.req-from, .req-to {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 20px;
+    margin: 0 0 6px 0;
+}
+.req-info {
+    background-color: #f4f6ee;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+.req-info p {
+    margin: 4px 0;
+}
+.req-description {
+    font-size: 14px;
+    line-height: 1.5;
+}
+.req-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+.req-empty {
+    grid-column: 1 / -1;
+    background-color: white;
+    text-align: center;
+    padding: 50px 20px;
+    border-radius: 10px;
+}
